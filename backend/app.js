@@ -60,6 +60,18 @@ app.get('/category',function(req,res){
 		return res.status(200).send(docs);
 	});   
 });
+/*---------------------------------Order----------------------------------------*/
+//Ceate order
+app.post('/order/create',function(req,res){
+    var order = new Order(req.body);
+    order.save(function (err){
+        if(err){
+            return res.status(500).send('Error al crear el pedido');
+        }
+        console.log('Pedido creado exitosamente');
+        return res.status(200).send();
+    });
+});
 
 /*--------------------------Levanto la app--------------------------------------*/
 app.listen(3000, function () {
