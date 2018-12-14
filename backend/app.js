@@ -31,11 +31,33 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 var async = require('async')
+var Category = require('./models/category')
 /*--------------------------Prueba--------------------------------------*/
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
+/*-------------------------Category-------------------------------------*/
+//Ceate category
+app.post('/category/create',function(req,res){
+	var category = new Category(req.body);
+	category.save(function (err){
+		if(err){
+			return res.status(500).send('Error al crear la categoría');
+		}
+		console.log('Categoría creada exitosamente');
+		return res.status(200).send();
+	});
+});
+//Find category
+app.get('/category',function(req,res){
+	Category.find({},function(err,docs){
+		if(err){
+			return res.status(500).send('Error al listar categorías');
+		}
+		return res.status(200).send(docs);
+	});   
+});
 
 /*--------------------------Levanto la app--------------------------------------*/
 app.listen(3000, function () {
