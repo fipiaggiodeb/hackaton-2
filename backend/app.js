@@ -61,7 +61,7 @@ app.get('/category',function(req,res){
 	});   
 });
 /*---------------------------------Order----------------------------------------*/
-//Ceate order
+//Crate order
 app.post('/order/create',function(req,res){
     var order = new Order(req.body);
     order.save(function (err){
@@ -73,12 +73,23 @@ app.post('/order/create',function(req,res){
     });
 });
 
+//Get all orders
+app.get('/order', function(req,res){
+	Order.find({}, function(err,docs){
+		if(err){
+			return res.status(500).send('Error al listar los pedidos');
+		}
+		return res.status(200).send(docs);
+	});
+});
+
 /*--------------------------Levanto la app--------------------------------------*/
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
 /*--------------------------Product APIs--------------------------------------*/
+//Get Product by Category
 app.get('/product/:category', function(req, res){
 	Product.find({"category":req.params.category}, function(err,docs){
 		if(err){
@@ -88,6 +99,7 @@ app.get('/product/:category', function(req, res){
 	});
 });
 
+//Get Product
 app.get('/product', function(req, res){
 	Product.find({}, function(err,docs){
 		if(err){
@@ -97,6 +109,8 @@ app.get('/product', function(req, res){
 	});
 });
 
+
+//Create Product
 app.post('/product/create', function(req, res){
 	var product = new Product(req.body);
 	product.save(function(err){
