@@ -32,6 +32,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 var async = require('async')
 var Category = require('./models/category')
+var Product = require('./models/product')
+
 /*--------------------------Prueba--------------------------------------*/
 app.get('/', function (req, res) {
   res.send('Hello World!');
@@ -62,4 +64,33 @@ app.get('/category',function(req,res){
 /*--------------------------Levanto la app--------------------------------------*/
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
+});
+
+/*--------------------------Product APIs--------------------------------------*/
+app.get('/product/:category', function(req, res){
+	Product.find({"category":req.params.category}, function(err,docs){
+		if(err){
+			return res.status(500).send('No se pudo encontrar el producto');
+		}
+		return res.status(200).send(docs);
+	});
+});
+
+app.get('/product', function(req, res){
+	Product.find({}, function(err,docs){
+		if(err){
+			return res.status(500).send('No se pudo encontrar el producto');
+		}
+		return res.status(200).send(docs);
+	});
+});
+
+app.post('/product/create', function(req, res){
+	var product = new Product(req.body);
+	product.save(function(err){
+	if(err){
+		return res.status(500).send('No se pudo crear el pedido;');
+	}
+	return	res.status(200).send('Producto creado exitosamente');
+	});
 });
