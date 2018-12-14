@@ -2,11 +2,11 @@
 
 ## Frontend
 
-Utilizamos react y react-router para el manejo de vistas.
+Utilizamos react y react-router para el manejo de vistas.  
 Para el manejo de dependencias utilizamos yarn:  
 https://yarnpkg.com/lang/en/docs/install/#debian-stable
 
-###Comandos 
+### Comandos 
 
 * Local development: ```yarn start```
 * Build: ```yarn build```
