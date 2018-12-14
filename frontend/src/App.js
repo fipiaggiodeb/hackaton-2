@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Home, Order, Orders } from './components';
 import "antd/dist/antd.css";
 
-const About = () => <h2>About</h2>;
-const Users = () => <h2>Users</h2>;
-
 const App = () => (
     <Router>
         <main className="main-wrapper">
