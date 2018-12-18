@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { Layout, Row, Col, Button } from 'antd';
 
 export default class Home extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {}
     }
+
     render(){
         return(
             <Layout>
@@ -15,9 +16,9 @@ export default class Home extends React.Component {
                         <img src="https://www.fillmurray.com/200/300" alt="market" className="img-responsive"/>
                         <h1>debMarket</h1>
                         <Button type="primary" className={"primary-deb-button"}>
-                            <Link to="/nuevo-pedido/">Nuevo pedido</Link>
+                            <Link to="/categorias/">Nuevo pedido</Link>
                         </Button>
-                        <Link to="/pedidos/" className={"list-link"}>Pedidos</Link>
+                        <Link to="/pedidos" className={"list-link"}>Pedidos</Link>
                     </Col>
                 </Row>
                 <style jsx={"true"}>{`
